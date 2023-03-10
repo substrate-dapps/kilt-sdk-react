@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
     "@kiltprotocol/sdk-js": "^0.31.1",
+    "@mantine/core": "^6.0.1",
+    "@mantine/hooks": "^6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

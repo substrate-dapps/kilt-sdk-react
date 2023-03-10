@@ -1,4 +1,13 @@
 import { useState, useEffect } from "react";
+import {
+  MantineProvider,
+  Text,
+  TextInput,
+  Checkbox,
+  Button,
+  Group,
+  Box,
+} from "@mantine/core";
 import * as Kilt from "@kiltprotocol/sdk-js";
 
 import "./App.css";
@@ -23,7 +32,16 @@ function App() {
     resolveWeb3Name();
   });
 
-  return <div className="App">john_doe is {did}</div>;
+  return (
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{ colorScheme: "dark" }}
+    >
+      <TextInput label="Name" placeholder="Enter your name" />
+      <div className="App">john_doe is {did}</div>
+    </MantineProvider>
+  );
 }
 
 export default App;
