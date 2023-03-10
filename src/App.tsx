@@ -7,6 +7,7 @@ import {
   Button,
   Group,
   Box,
+  Space,
 } from "@mantine/core";
 import * as Kilt from "@kiltprotocol/sdk-js";
 
@@ -14,11 +15,12 @@ import "./App.css";
 
 function App() {
   const [did, setDid] = useState("");
+  const [name, setName] = useState("john_doe");
 
   useEffect(() => {
     const resolveWeb3Name = async () => {
       const api = await Kilt.connect("wss://spiritnet.kilt.io");
-      const encodedDidDetails = await api.call.did.queryByWeb3Name("john_doe");
+      const encodedDidDetails = await api.call.did.queryByWeb3Name(name);
 
       try {
         const {
@@ -30,7 +32,7 @@ function App() {
       }
     };
     resolveWeb3Name();
-  });
+  }, [name]);
 
   return (
     <MantineProvider
@@ -38,8 +40,16 @@ function App() {
       withNormalizeCSS
       theme={{ colorScheme: "dark" }}
     >
-      <TextInput label="Name" placeholder="Enter your name" />
-      <div className="App">john_doe is {did}</div>
+      <TextInput
+        label="Name"
+        placeholder="Enter your name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <Space h="md" />
+      <div className="App">
+        {name} is {did}
+      </div>
     </MantineProvider>
   );
 }
