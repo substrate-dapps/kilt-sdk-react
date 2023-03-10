@@ -5,7 +5,10 @@ import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfil
 import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
 import { defineConfig } from "vite";
 
+// is prod
+const isProd = process.env.NODE_ENV === "production";
 export default defineConfig({
+  base: isProd ? "https://substrate-dapps.github.io/kilt-sdk-react/" : "/",
   plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
